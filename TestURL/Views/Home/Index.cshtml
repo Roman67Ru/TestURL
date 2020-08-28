@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@(Html.Kendo().Grid<MainURLViewModel>()
+                               .Name("Grid")
+                               .Columns(col =>
+                               {
+                                   col.Bound(x => x.LongUrl);
+                                   col.Bound(x => x.ShortUrl);
+                                   col.Bound(x => x.DateAdd).Format("{0:dd.MM.yyyy}");
+                                   col.Bound(x => x.Count);
+                                   col.Command(command =>
+                                   {
+                                       command.Destroy().Text(" ");
+                                   }).Width(160);
+
+                               })
+                                     .ToolBar(toolbar =>
+                                     {
+                                         toolbar.Create().Text("Добавить");
+                                     })
+                               .Editable(editable => editable.Mode(GridEditMode.PopUp).Window(window => window.Width(480)))
+                               .DataSource(dataSource => dataSource
+                               .Ajax()
+                               .Model(model => model.Id(p => p.idMainURL))
+                               .Read(read => read.Action("Grid", "Home"))
+                               .Create(create => create.Action("Create", "Home"))
+                               .Destroy(destroy => destroy.Action("Destroy", "Home"))
+                               )
+)
+<div style="margin-top: 10px;">
+    @Html.Kendo().TextBox().Name("TextB").HtmlAttributes(new { style = "width: 200px;" })
+    <input type="submit" onclick="Go()" value="Перейти" class="btn-primary"  />
+</div>
+<script>
+    function Go() {
+        location.href = $("#TextB").val();
+    }
+</script>
+  
