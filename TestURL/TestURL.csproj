@@ -11,6 +11,7 @@
     <PackageReference Include="NHibernate.Driver.MySqlConnector" Version="2.0.0" />
     <PackageReference Include="NHibernate.Mapping.Attributes" Version="5.1.0" />
     <PackageReference Include="NHibernateProfiler" Version="5.0.5048" />
+    <PackageReference Include="Telerik.UI.for.AspNet.Core.Trial" Version="2020.2.617" />
   </ItemGroup>
 
   <ItemGroup>
